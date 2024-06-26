@@ -1,0 +1,15 @@
+apiVersion: monitoring.example.com/v1alpha1
+kind: PrometheusOperator
+metadata:
+  labels:
+    app.kubernetes.io/name: prometheusoperator
+    app.kubernetes.io/instance: prometheusoperator-sample
+    app.kubernetes.io/part-of: prometheus-operator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: prometheus-operator
+  name: prometheusoperator-sample
+  namespace: prometheus-operator-system
+spec:
+  size: 1
+  image: prom/prometheus:v2.26.0
+  storageSize: 1Gi

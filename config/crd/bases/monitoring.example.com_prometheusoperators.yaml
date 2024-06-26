@@ -1,0 +1,64 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.13.0
+  name: prometheusoperators.monitoring.example.com
+spec:
+  group: monitoring.example.com
+  names:
+    kind: PrometheusOperator
+    listKind: PrometheusOperatorList
+    plural: prometheusoperators
+    singular: prometheusoperator
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: PrometheusOperator is the Schema for the prometheusoperators
+          API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: PrometheusOperatorSpec defines the desired state of PrometheusOperator
+            properties:
+              image:
+                type: string
+              size:
+                format: int32
+                type: integer
+              storageSize:
+                type: string
+            required:
+            - image
+            - size
+            - storageSize
+            type: object
+          status:
+            description: PrometheusOperatorStatus defines the observed state of PrometheusOperator
+            properties:
+              nodes:
+                items:
+                  type: string
+                type: array
+            required:
+            - nodes
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

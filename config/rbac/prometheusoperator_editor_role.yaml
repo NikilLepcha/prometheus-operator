@@ -1,0 +1,31 @@
+# permissions for end users to edit prometheusoperators.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: prometheusoperator-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: prometheus-operator
+    app.kubernetes.io/part-of: prometheus-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: prometheusoperator-editor-role
+rules:
+- apiGroups:
+  - monitoring.example.com
+  resources:
+  - prometheusoperators
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - monitoring.example.com
+  resources:
+  - prometheusoperators/status
+  verbs:
+  - get

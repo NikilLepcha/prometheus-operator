@@ -1,0 +1,54 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: manager-role
+rules:
+- apiGroups:
+  - monitoring.example.com
+  resources:
+  - prometheusoperators
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - monitoring.example.com
+  resources:
+  - prometheusoperators/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - monitoring.example.com
+  resources:
+  - prometheusoperators/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - list
+  - watch
+  - get
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  - services
+  - endpoints
+  - persistentvolumeclaims
+  - configmaps
+  verbs:
+  - '*'
